@@ -16,7 +16,7 @@ public:
 	//Getters for UserInput
 	float getWeight();
 	int getAge();
-	int getHeight();
+	float getHeight();
 	std::string getGender();
 	std::string getActivityLevel();
 
@@ -28,7 +28,7 @@ private:
 	//User Inputs
 	float weight;
 	int age;
-	int height;
+	float height;
 	std::string gender;
 	std::string activityLevel;
 	char unitSystem; //'M' for Metric 'I' for Imperial
@@ -36,11 +36,16 @@ private:
 	//Private methods for input validation
 	float validateWeight(float inputWeight);
 	int validateAge(int inputAge);
-	int validateHeight(int inputHeight);
+	float validateHeight(float inputHeight);
 	std::string validateGender(const std::string& inputGender);
 	std::string validateActivityLevel(const std::string& inputActivityLevel);
 
 	//Conversion methods
 	float convertWeightToMetric(float weightInPounds);
-	int convertHeightToMetric(int heightInInches);
+	float convertHeightToMetric(float heightInInches);
+
+	//Utility functions for different types of input
+	void collectIntegerInput(const std::string& prompt, int (User_Input::* validate)(int), int& member);
+	void collectFloatInput(const std::string& prompt, float (User_Input::* validate)(float), float& member);
+	void collectStringInput(const std::string& prompt, std::string(User_Input::* validate)(const std::string&), std::string& member);
 };

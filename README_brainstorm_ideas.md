@@ -128,3 +128,18 @@ bmr calculator
 calorie requirment calculator
 
 
+
+/////////////////////////////////////////////Issues I have Run Into////////////////////////////////////////////////
+
+- Determining an acceptable Height range between users. I settled on 0 feet to 10 feet for simplicity purposes considerng babies and freakishly tall people.
+- Currently stumbled upon an issue where taking user height the Inches has not been accounted for. As a soloution I changed the data type from INT to Float to 
+  accomdate users who are 5 feet and 3 inches input can be recieved as 5.3(feet) in the feet section.  
+
+  - Encountered another issue in the ValidateActivitylevel function description: the issue was deciding how many activity levels there should be 
+    after researching other BMI calclators on the internet i decded to implement the 5 differnt activity levels. The calculations and how the affect caloric intake and expedenture
+  - will be determined later to ensure accuracy for users.
+
+
+
+  - I adjusted collectUserInputs() to use validateAge() for age validation and handle the case where the age input is invalid. I will do the sae for the remaining 4
+  parameters (weight, height, gender, activity level).
