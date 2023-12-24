@@ -22,7 +22,7 @@ public:
 
 	// method to calculate BMI
 	float calculateBMI();
-
+	std::string getBMICategory(float bmi);
 private:
 
 	User_Input* userInput;

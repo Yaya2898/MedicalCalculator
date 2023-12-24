@@ -1,6 +1,8 @@
 //Implementation of user input handling and validation logic
 
 #include "User_Input.h"
+#include <cctype>
+#include <locale>
 
 
 //User_Input::User_Input() {}; constructor i need to define later
@@ -18,11 +20,11 @@ float User_Input::getHeight() {
     return this->height;  
 }
 
-std::string User_Input::getGender() {
+int User_Input::getGender() {
     return this->gender;  
 }
 
-std::string User_Input::getActivityLevel() {
+int User_Input::getActivityLevel() {
     return this->activityLevel;
 }
 
@@ -101,37 +103,39 @@ void User_Input::collectUserInputs() {
     collectFloatInput("Enter your height: ", &User_Input::validateHeight, this->height);
 
     // Collect gender
-    collectStringInput("Enter your gender (M/F): ", &User_Input::validateGender, this->gender);
+    collectIntegerInput("Enter your gender (1 For Male, 2 For Female 3 For NA): ", &User_Input::validateGender, this->gender);
 
     // Collect activity level
-    collectStringInput("Enter your activity level (e.g., sedentary, active): ", &User_Input::validateActivityLevel, this->activityLevel);
+    collectIntegerInput("Enter your activity level based on intensity (1 For sedentary, 2 For Lightly Active, 3 For Moderatly Active, 4 For Very Active, 5 For Extra Active ): ", &User_Input::validateActivityLevel, this->activityLevel);
 }
 
 
 //////////////////////////////////////////// VALIDATION METHODS ////////////////////////////////////////////
 
 //activity level for users to choose
-std::string User_Input::validateActivityLevel(const std::string& inputActivityLevel) {
+int User_Input::validateActivityLevel(int inputActivityLevel) {
 
-    if (inputActivityLevel == "Sedentary" || inputActivityLevel == "Lightly Active" || inputActivityLevel == "Moderatly Active" || inputActivityLevel == "Very Active" || inputActivityLevel == "Extra Active")
+    if (inputActivityLevel == 1 || inputActivityLevel == 2 || inputActivityLevel == 3 || inputActivityLevel == 4 || inputActivityLevel == 5)
 
         return inputActivityLevel;
     else {   
-        return "Invalid Activity Level";
+        return -1; //"Invalid Activity Level";
     }
 };
 
 
-std::string User_Input::validateGender(const std::string& inputGender) {
+int User_Input::validateGender(int inputGender) {
 
-    if (inputGender == "Male" || inputGender == "Female" || inputGender == "NA")
+
+
+    if (inputGender == 1 || inputGender == 2 || inputGender == 3)
     {
         return inputGender; //valid input
     }
         
     else {
         
-        return "Invalid Gender"; //invalid input
+        return -1; //invalid input
     }
 };
 
@@ -141,13 +145,12 @@ float User_Input::validateHeight(float inputHeight) { // do height research than
 
 //defining a reasonable height
 
-    const float minHeight = 0.0; // made it 0 for babies
-    const float maxHeight = 10.0; // made it 10 for tall people
-
+    const float minHeight = 0.0; // made it 0feet for babies
+    const float maxHeight = 10.0; // made it 10 feet tall for any giants that want to use this program
 
 //ensuring height userinput is within defined limits
 
-    if (inputHeight > minHeight || inputHeight < maxHeight) {
+    if (inputHeight < minHeight || inputHeight > maxHeight) {
     
         std::cerr << "Invalid Height. Please enter a value between " << minHeight << " and " << maxHeight << " Height " << std::endl;
         return -1; //error

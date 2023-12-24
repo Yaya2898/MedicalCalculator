@@ -311,10 +311,66 @@ Calculators Class:
 BMR Calculator Class:
 
 BMI Calculator Class:
+
+Problem 1:
     - Currently experiencing an issue with the BMI calculator where when the user attempts to input their height within the accepted 
     range an error pops up saying that the height is invalid.
 
   I have tried to fix this issue by changing the data type from int to float but the issue still persists.
   I will continue to work on this issue and update the read me once the issue is resolved.
+
+  Solution:
+  - The issue identifed turned out to be an operator issue:
+    the problem if statment was -- if (inputHeight > minHeight || inputHeight < maxHeight) 
+    the solution was to change the if statement to -- if (inputHeight < minHeight || inputHeight > maxHeight)
+  - In conclusion the issue was that the operator was incorrect and the if statement was not checking for the correct range of values.
+ 
+ Problem 2:
+ - Currently experiencing a problem with the Gender Input: When the user is prompted to input their Gender which is Male/Female or NA the error message pops up.
+ -   I will continue to work on this issue and update the read me once the issue is resolved.
+ 
+ Solution: After numerous attempts to circumvente the issue I decided to change the data type from string to int and changed the prompting message
+ by assigning Male the Value 1 , Female the Value 2 and NA the Value 3, as shown here: if (inputGender == 1 || inputGender == 2 || inputGender == 3)
+ I also updated the else return statement to an int in this case -1 instead of the previous string to accomodate the change in data type.
+  These changes resulted in the issue being resolved and the program now runs as intended in that regard.
+
+Problem 3:
+- Currently experiencing an issue with the Activity Level Input: When the user is prompted to input their Activity Level which is
+- Sedentary, Lightly Active, Moderately Active, Very Active, Extra Active the error message pops up. I suspect the issue is related to the data type as before.
+- I will continue to work on this issue and update the read me once the issue is resolved.
+
+Solution:
+- The issue was related to the data type as suspected. I changed the data type from string to int and changed the prompting message
+ by assigning Sedentary the Value 1 , Lightly Active the Value 2, Moderately Active the Value 3, Very Active the Value 4, Extra Active the Value 5
+ as shown here: if (inputActivityLevel == 1 || inputActivityLevel == 2 || inputActivityLevel == 3 || inputActivityLevel == 4 || inputActivityLevel == 5)
+ I also updated the else return statement to an int in this case -1 instead of the previous string to accomodate the change in data type.
+  These changes resulted in the issue being resolved and the program now runs as intended in that regard.
+
+  Problem 4:
+  - Currently experiencing an issue with the Weight Input: When the user is prompted to input their Weight which is in the range of 0 to 1000 the error message pops up.
+  - I will continue to work on this issue and update the read me once the issue is resolved.
+
+  Solution:
+  - The issue was related to the data type as suspected. I changed the data type from int to float and changed the prompting message
+ by assigning 0 as the minimum weight and 1000 as the maximum weight as shown here: if (inputWeight < minWeight || inputWeight > maxWeight)
+ I also updated the else return statement to an int in this case -1 instead of the previous string to accomodate the change in data type.
+  These changes resulted in the issue being resolved and the program now runs as intended in that regard.
+
+  Problem 5:
+  - Currently experiencing an issue with the Age Input: When the user is prompted to input their Age which is in the range of 0 to 120 the error message pops up.
+  - I will continue to work on this issue and update the read me once the issue is resolved.
+
+  Solution:
+  - The issue was related to the data type as suspected. I changed the data type from int to float and changed the prompting message
+ by assigning 0 as the minimum age and 120 as the maximum age as shown here: if (inputAge < minAge || inputAge > maxAge)
+ I also updated the else return statement to an int in this case -1 instead of the previous string to accomodate the change in data type.
+ These changes resulted in the issue being resolved and the program now runs as intended in that regard.
+
+  Problem 6:
+ - Currently experiencing an "issue" with the BMI Calculator. I think i just need to define the formula for the BMI calculation and the rest should be fine.
+ 
+ Solution:
+ WIll EXPLAIN TMRW!!
+
 
 Med_Calc_Main Class:
