@@ -11,7 +11,7 @@ class User_Input {
 
 public:
 
-	User_Input(); //Constructor
+	//User_Input(); //Constructor
 
 	//Getters for UserInput
 	float getWeight();
@@ -19,6 +19,7 @@ public:
 	float getHeight();
 	std::string getGender();
 	std::string getActivityLevel();
+	char getUnitSystem();
 
 	//Method to handle all user inputs
 	void collectUserInputs();

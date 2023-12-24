@@ -3,10 +3,10 @@
 #include "User_Input.h"
 
 
-//User_Input::User_Input() {};
+//User_Input::User_Input() {}; constructor i need to define later
 
 //user input Getters
-float User_Input::getWeight() {
+float User_Input::getWeight() { 
     return this->weight;  
 }
 
@@ -26,9 +26,16 @@ std::string User_Input::getActivityLevel() {
     return this->activityLevel;
 }
 
+// Added this method to get the unit system to help with BMI calculation
+char User_Input::getUnitSystem() {
+    return this->unitSystem;
+}
+
+
+//////////////////////////////////////////// UTILITY METHODS ////////////////////////////////////////////
 
 //collect int
-void User_Input::collectIntegerInput(const std::string& prompt, int (User_Input::* validate)(int), int& member) {
+void User_Input::collectIntegerInput(const std::string& prompt, int (User_Input::* validate)(int), int& member) { 
     while (true) {
         std::cout << prompt;
         int input;
@@ -41,7 +48,7 @@ void User_Input::collectIntegerInput(const std::string& prompt, int (User_Input:
         else {
             std::cerr << "Invalid input. Please try again.\n";
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
         }
     }
 }
@@ -82,7 +89,7 @@ void User_Input::collectStringInput(const std::string& prompt, std::string(User_
     }
 }
 
-
+// this is where user inputs are being collected and validated
 void User_Input::collectUserInputs() {
     // Collect age
     collectIntegerInput("Enter your age: ", &User_Input::validateAge, this->age);
@@ -101,139 +108,7 @@ void User_Input::collectUserInputs() {
 }
 
 
-//had to optimize the code below to avoid repetion: Will document in read me what the problem was and the solution implemented before i remove this code
-
-/*//this method ensures that in the event a user incorrectly inputs 1 or more parameters but other parameters were correclty inputted the user will not have to restart from scratch 
-void User_Input::collectUserInputs() {
-    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
-
-    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
-
-        //age input loop
-        if (!ageValid) {
-            while (true) {
-                std::cout << "Enter your age: ";
-                int inputAge;
-                std::cin >> inputAge;
-
-                if (validateAge(inputAge) != -1) {
-                    this->age = inputAge;
-                    ageValid = true;
-                    break;
-                }
-                else {
-                    std::cerr << "Invalid age. Please try again." << std::endl;
-                }
-            }
-        }
-    }
-}
-
-
-//this method ensures that in the event a user incorrectly inputs 1 or more parameters but other parameters were correclty inputted the user will not have to restart from scratch 
-void User_Input::collectUserInputs() {
-    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
-
-    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
-
-        //Weight input loop
-        if (!weightValid) {
-            while (true) {
-                std::cout << "Enter your weight: ";
-                int inputWeight;
-                std::cin >> inputWeight;
-
-                if (validateWeight(inputWeight) != -1) {
-                    this->weight = inputWeight;
-                    weightValid = true;
-                    break;
-                }
-                else {
-                    std::cerr << "Invalid weight. Please try again." << std::endl;
-                }
-            }
-        }
-    }
-}
-
-void User_Input::collectUserInputs() {
-    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
-
-    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
-
-        //height input loop
-        if (!heightValid) {
-            while (true) {
-                std::cout << "Enter your height: ";
-                int inputHeight;
-                std::cin >> inputHeight;
-
-                if (validateHeight(inputHeight) != -1) {
-                    this->height = inputHeight;
-                    heightValid = true;
-                    break;
-                }
-                else {
-                    std::cerr << "Invalid height. Please try again." << std::endl;
-                }
-            }
-        }
-    }
-}
-
-void User_Input::collectUserInputs() {
-    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
-
-    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
-
-        //height input loop
-        if (!genderValid) {
-            while (true) {
-                std::cout << "Enter your gender: ";
-                std::string inputGender;
-                std::getline (std::cin, inputGender);
-
-                if (validateGender(inputGender) == "Valid") {
-                    this->gender = inputGender;
-                    genderValid = true;
-                    break;
-                }
-                else {
-                    std::cerr << "Invalid gender. Please try again." << std::endl;
-                }
-            }
-        }
-    }
-}
-
-
-
-void User_Input::collectUserInputs() {
-    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
-
-    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
-
-        //height input loop
-        if (!activitylevelValid) {
-            while (true) {
-                std::cout << "Enter your activity level: ";
-                std::string inputActivityLevel;
-                std::getline (std::cin, inputActivityLevel);
-
-                if (validateActivityLevel(activityLevel) == "Valid") {
-                    this->activityLevel = activityLevel;
-                    activitylevelValid = true;
-                    break;
-                }
-                else {
-                    std::cerr << "Invalid activity. Please try again." << std::endl;
-                }
-            }
-        }
-    }
-}*/
-
-
+//////////////////////////////////////////// VALIDATION METHODS ////////////////////////////////////////////
 
 //activity level for users to choose
 std::string User_Input::validateActivityLevel(const std::string& inputActivityLevel) {
@@ -266,8 +141,8 @@ float User_Input::validateHeight(float inputHeight) { // do height research than
 
 //defining a reasonable height
 
-    const float minHeight = 0; // made it 0 for babies
-    const float maxHeight = 10; // made it 10 for tall people
+    const float minHeight = 0.0; // made it 0 for babies
+    const float maxHeight = 10.0; // made it 10 for tall people
 
 
 //ensuring height userinput is within defined limits
@@ -321,6 +196,8 @@ float User_Input::validateWeight(float inputWeight) {
     return inputWeight;
 }
 
+
+//////////////////////////////////////////// CONVERSION METHODS ////////////////////////////////////////////
 
 float User_Input::convertWeightToMetric(float weightInPounds) {
     return weightInPounds * 0.453592;

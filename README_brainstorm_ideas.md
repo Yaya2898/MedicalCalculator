@@ -143,3 +143,178 @@ calorie requirment calculator
 
   - I adjusted collectUserInputs() to use validateAge() for age validation and handle the case where the age input is invalid. I will do the sae for the remaining 4
   parameters (weight, height, gender, activity level).
+
+
+  explain changes here:
+
+  //had to optimize the code below to avoid repetion: Will document in read me what the problem was and the solution implemented before i remove this code
+
+/*//this method ensures that in the event a user incorrectly inputs 1 or more parameters but other parameters were correclty inputted the user will not have to restart from scratch 
+void User_Input::collectUserInputs() {
+    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
+
+    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
+
+        //age input loop
+        if (!ageValid) {
+            while (true) {
+                std::cout << "Enter your age: ";
+                int inputAge;
+                std::cin >> inputAge;
+
+                if (validateAge(inputAge) != -1) {
+                    this->age = inputAge;
+                    ageValid = true;
+                    break;
+                }
+                else {
+                    std::cerr << "Invalid age. Please try again." << std::endl;
+                }
+            }
+        }
+    }
+}
+
+
+//this method ensures that in the event a user incorrectly inputs 1 or more parameters but other parameters were correclty inputted the user will not have to restart from scratch 
+void User_Input::collectUserInputs() {
+    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
+
+    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
+
+        //Weight input loop
+        if (!weightValid) {
+            while (true) {
+                std::cout << "Enter your weight: ";
+                int inputWeight;
+                std::cin >> inputWeight;
+
+                if (validateWeight(inputWeight) != -1) {
+                    this->weight = inputWeight;
+                    weightValid = true;
+                    break;
+                }
+                else {
+                    std::cerr << "Invalid weight. Please try again." << std::endl;
+                }
+            }
+        }
+    }
+}
+
+void User_Input::collectUserInputs() {
+    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
+
+    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
+
+        //height input loop
+        if (!heightValid) {
+            while (true) {
+                std::cout << "Enter your height: ";
+                int inputHeight;
+                std::cin >> inputHeight;
+
+                if (validateHeight(inputHeight) != -1) {
+                    this->height = inputHeight;
+                    heightValid = true;
+                    break;
+                }
+                else {
+                    std::cerr << "Invalid height. Please try again." << std::endl;
+                }
+            }
+        }
+    }
+}
+
+void User_Input::collectUserInputs() {
+    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
+
+    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
+
+        //height input loop
+        if (!genderValid) {
+            while (true) {
+                std::cout << "Enter your gender: ";
+                std::string inputGender;
+                std::getline (std::cin, inputGender);
+
+                if (validateGender(inputGender) == "Valid") {
+                    this->gender = inputGender;
+                    genderValid = true;
+                    break;
+                }
+                else {
+                    std::cerr << "Invalid gender. Please try again." << std::endl;
+                }
+            }
+        }
+    }
+}
+
+
+
+void User_Input::collectUserInputs() {
+    bool ageValid = false, weightValid = false, heightValid = false, genderValid = false, activitylevelValid = false; //flags for every parameters set to false
+
+    while (!(ageValid && weightValid && heightValid && genderValid && activitylevelValid)) {
+
+        //height input loop
+        if (!activitylevelValid) {
+            while (true) {
+                std::cout << "Enter your activity level: ";
+                std::string inputActivityLevel;
+                std::getline (std::cin, inputActivityLevel);
+
+                if (validateActivityLevel(activityLevel) == "Valid") {
+                    this->activityLevel = activityLevel;
+                    activitylevelValid = true;
+                    break;
+                }
+                else {
+                    std::cerr << "Invalid activity. Please try again." << std::endl;
+                }
+            }
+        }
+    }
+}*/
+
+
+Whats Been Done:
+
+User_Input Class:
+I have created relevant methods to collect user input and validate the input. 
+I have also created a method to display the user input and a method to clear the user input.
+
+CalorieCalculator Class:
+
+Calculators Class:
+
+BMR Calculator Class:
+
+BMI Calculator Class:
+
+Med_Calc_Main Class:
+
+
+
+Problems Faced: 
+
+User_Input Class:
+Currenlty has 5 responsibilities = 1. Collect User Input 2. Validate User Input 3. Conversion of User Input  4. Get User Input 5. Store User Input
+Solution: I will create 3 new classes to handle the 3 responsibilities that are not related to the User_Input Class. UserInputCollecor, InputValidator, UnitConverter
+
+CalorieCalculator Class:
+
+Calculators Class:
+
+BMR Calculator Class:
+
+BMI Calculator Class:
+    - Currently experiencing an issue with the BMI calculator where when the user attempts to input their height within the accepted 
+    range an error pops up saying that the height is invalid.
+
+  I have tried to fix this issue by changing the data type from int to float but the issue still persists.
+  I will continue to work on this issue and update the read me once the issue is resolved.
+
+Med_Calc_Main Class:
